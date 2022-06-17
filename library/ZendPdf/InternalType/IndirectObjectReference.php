@@ -68,15 +68,16 @@ class IndirectObjectReference extends AbstractTypeObject
      * Object constructor:
      *
      * @param integer $objNum
-     * @param integer $genNum
      * @param \ZendPdf\InternalType\IndirectObjectReference\Context $context
      * @param \ZendPdf\ObjectFactory $factory
+     * @param integer $genNum
+     * 
      * @throws \ZendPdf\Exception\ExceptionInterface
      */
     public function __construct($objNum,
-                                $genNum = 0,
                                 IndirectObjectReference\Context $context,
-                                Pdf\ObjectFactory $factory)
+                                Pdf\ObjectFactory $factory,
+                                $genNum = 0)
     {
         if ( !(is_integer($objNum) && $objNum > 0) ) {
             throw new Exception\RuntimeException('Object number must be positive integer');

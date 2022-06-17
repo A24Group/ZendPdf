@@ -480,7 +480,7 @@ class DataParser
             return null;
         }
 
-        $ref = new IndirectObjectReference((int)$objNum, (int)$genNum, $this->_context, $this->_objFactory);
+        $ref = new IndirectObjectReference((int)$objNum, $this->_context, $this->_objFactory, (int)$genNum);
 
         return $ref;
     }
