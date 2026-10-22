@@ -284,7 +284,7 @@ class Loaded extends AbstractOutline
      * @return \ZendPdf\Action\AbstractAction
      * @throws \ZendPdf\Exception\ExceptionInterface
      */
-    public function __construct(InternalType\AbstractTypeObject $dictionary, \SplObjectStorage $processedDictionaries = null)
+    public function __construct(InternalType\AbstractTypeObject $dictionary, ?\SplObjectStorage $processedDictionaries = null)
     {
         if ($dictionary->getType() != InternalType\AbstractTypeObject::TYPE_DICTIONARY) {
             throw new Exception\CorruptedPdfException('$dictionary mast be an indirect dictionary object.');
@@ -314,7 +314,7 @@ class Loaded extends AbstractOutline
                     throw new Exception\CorruptedPdfException('Outline childs load error.');
                 }
 
-                if (!$processedDictionaries->contains($childDictionary)) {
+                if (!$processedDictionaries->offsetExists($childDictionary)) {
                     $this->childOutlines[] = new Loaded($childDictionary, $processedDictionaries);
                 }
 
@@ -346,8 +346,8 @@ class Loaded extends AbstractOutline
     public function dumpOutline(ObjectFactory $factory,
                                               $updateNavigation,
               InternalType\AbstractTypeObject $parent,
-              InternalType\AbstractTypeObject $prev = null,
-                            \SplObjectStorage $processedOutlines = null)
+             ?InternalType\AbstractTypeObject $prev = null,
+                           ?\SplObjectStorage $processedOutlines = null)
     {
         if ($processedOutlines === null) {
             $processedOutlines = new \SplObjectStorage();
@@ -384,7 +384,7 @@ class Loaded extends AbstractOutline
             $this->_outlineDictionary->First = null;
 
             foreach ($this->childOutlines as $childOutline) {
-                if ($processedOutlines->contains($childOutline)) {
+                if ($processedOutlines->offsetExists($childOutline)) {
                     throw new Exception\CorruptedPdfException('Outlines cyclyc reference is detected.');
                 }
 
@@ -409,7 +409,7 @@ class Loaded extends AbstractOutline
             }
         } else {
             foreach ($this->childOutlines as $childOutline) {
-                if ($processedOutlines->contains($childOutline)) {
+                if ($processedOutlines->offsetExists($childOutline)) {
                     throw new Exception\CorruptedPdfException('Outlines cyclyc reference is detected.');
                 }
                 $lastChild = $childOutline->dumpOutline($factory, $updateChildNavigation, $this->_outlineDictionary, $lastChild, $processedOutlines);

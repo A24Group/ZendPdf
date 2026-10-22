@@ -46,7 +46,7 @@ class Parsed extends AbstractTrailer
      */
     public function __construct(InternalType\DictionaryObject $dict,
                                 InternalType\IndirectObjectReference\Context $context,
-                                AbstractTrailer $prev = null)
+                               ?AbstractTrailer $prev = null)
     {
         parent::__construct($dict);
 

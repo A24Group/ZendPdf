@@ -228,8 +228,8 @@ class Created extends AbstractOutline
     public function dumpOutline(ObjectFactory $factory,
                                               $updateNavigation,
               InternalType\AbstractTypeObject $parent,
-              InternalType\AbstractTypeObject $prev = null,
-                            \SplObjectStorage $processedOutlines = null)
+             ?InternalType\AbstractTypeObject $prev = null,
+                           ?\SplObjectStorage $processedOutlines = null)
     {
         if ($processedOutlines === null) {
             $processedOutlines = new \SplObjectStorage();
@@ -271,7 +271,7 @@ class Created extends AbstractOutline
 
         $lastChild = null;
         foreach ($this->childOutlines as $childOutline) {
-            if ($processedOutlines->contains($childOutline)) {
+            if ($processedOutlines->offsetExists($childOutline)) {
                 throw new Exception\CorruptedPdfException('Outlines cyclyc reference is detected.');
             }
 

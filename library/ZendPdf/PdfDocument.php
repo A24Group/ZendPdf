@@ -146,6 +146,13 @@ class PdfDocument
      */
     protected $_parser;
 
+    /**
+     * PDF version of the document header.
+     *
+     * @var string|null
+     */
+    protected $_pdfHeaderVersion = null;
+
 
     /**
      * List of inheritable attributesfor pages tree
@@ -479,7 +486,7 @@ class PdfDocument
 
         $outlineDictionary = $root->Outlines->First;
         $processedDictionaries = new \SplObjectStorage();
-        while ($outlineDictionary !== null  &&  !$processedDictionaries->contains($outlineDictionary)) {
+        while ($outlineDictionary !== null  &&  !$processedDictionaries->offsetExists($outlineDictionary)) {
             $processedDictionaries->attach($outlineDictionary);
 
             $this->outlines[] = new Outline\Loaded($outlineDictionary);
@@ -782,7 +789,7 @@ class PdfDocument
      * @param \ZendPdf\InternalStructure\NavigationTarget $openAction
      * @returns Zend_PDF
      */
-    public function setOpenAction(InternalStructure\NavigationTarget $openAction = null)
+    public function setOpenAction(?InternalStructure\NavigationTarget $openAction = null)
     {
         $root = $this->_trailer->Root;
         $root->touch();
