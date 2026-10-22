@@ -293,7 +293,7 @@ class Loaded extends AbstractOutline
         if ($processedDictionaries === null) {
             $processedDictionaries = new \SplObjectStorage();
         }
-        $processedDictionaries->attach($dictionary);
+        $processedDictionaries->offsetSet($dictionary);
 
         $this->_outlineDictionary = $dictionary;
 
@@ -352,7 +352,7 @@ class Loaded extends AbstractOutline
         if ($processedOutlines === null) {
             $processedOutlines = new \SplObjectStorage();
         }
-        $processedOutlines->attach($this);
+        $processedOutlines->offsetSet($this);
 
         if ($updateNavigation) {
             $this->_outlineDictionary->touch();

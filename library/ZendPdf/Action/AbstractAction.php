@@ -71,14 +71,14 @@ abstract class AbstractAction extends Pdf\InternalStructure\NavigationTarget imp
             if ($dictionary->Next instanceof InternalType\DictionaryObject) {
                 // Check if dictionary object is not already processed
                 if (!$processedActions->offsetExists($dictionary->Next)) {
-                    $processedActions->attach($dictionary->Next);
+                    $processedActions->offsetSet($dictionary->Next);
                     $this->next[] = self::load($dictionary->Next, $processedActions);
                 }
             } elseif ($dictionary->Next instanceof InternalType\ArrayObject) {
                 foreach ($dictionary->Next->items as $chainedActionDictionary) {
                     // Check if dictionary object is not already processed
                     if (!$processedActions->offsetExists($chainedActionDictionary)) {
-                        $processedActions->attach($chainedActionDictionary);
+                        $processedActions->offsetSet($chainedActionDictionary);
                         $this->next[] = self::load($chainedActionDictionary, $processedActions);
                     }
                 }
@@ -206,7 +206,7 @@ abstract class AbstractAction extends Pdf\InternalStructure\NavigationTarget imp
         if ($processedActions->offsetExists($this)) {
             throw new Exception\CorruptedPdfException('Action chain cyclyc reference is detected.');
         }
-        $processedActions->attach($this);
+        $processedActions->offsetSet($this);
 
         $childListUpdated = false;
         if (count($this->_originalNextList) != count($this->next)) {

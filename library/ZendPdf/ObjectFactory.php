@@ -285,7 +285,7 @@ class ObjectFactory
         }
 
         $this->_modifiedObjects[$obj->getObjNum()] = $obj;
-        $this->_removedObjects->attach($obj);
+        $this->_removedObjects->offsetSet($obj);
     }
 
 

@@ -234,7 +234,7 @@ class Created extends AbstractOutline
         if ($processedOutlines === null) {
             $processedOutlines = new \SplObjectStorage();
         }
-        $processedOutlines->attach($this);
+        $processedOutlines->offsetSet($this);
 
         $outlineDictionary = $factory->newObject(new InternalType\DictionaryObject());
 

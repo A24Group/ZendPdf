@@ -487,7 +487,7 @@ class PdfDocument
         $outlineDictionary = $root->Outlines->First;
         $processedDictionaries = new \SplObjectStorage();
         while ($outlineDictionary !== null  &&  !$processedDictionaries->offsetExists($outlineDictionary)) {
-            $processedDictionaries->attach($outlineDictionary);
+            $processedDictionaries->offsetSet($outlineDictionary);
 
             $this->outlines[] = new Outline\Loaded($outlineDictionary);
 
