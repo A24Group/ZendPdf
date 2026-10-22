@@ -101,7 +101,7 @@ class StreamContent extends AbstractTypeObject
      * @param \ZendPdf\ObjectFactory $factory
      * @return string
      */
-    public function toString(Pdf\ObjectFactory $factory = null)
+    public function toString(?Pdf\ObjectFactory $factory = null)
     {
         return "stream\n" . $this->value->getRef() . "\nendstream";
     }

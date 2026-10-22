@@ -63,7 +63,7 @@ class NumericObject extends AbstractTypeObject
      * @param \ZendPdf\ObjectFactory $factory
      * @return string
      */
-    public function toString(Pdf\ObjectFactory $factory = null)
+    public function toString(?Pdf\ObjectFactory $factory = null)
     {
         if (is_integer($this->value)) {
             return (string)$this->value;

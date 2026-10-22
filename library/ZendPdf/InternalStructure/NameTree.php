@@ -77,48 +77,56 @@ class NameTree implements ArrayAccess, Countable, Iterator
         }
     }
 
+    #[\ReturnTypeWillChange]
     public function current()
     {
         return current($this->_items);
     }
 
 
+    #[\ReturnTypeWillChange]
     public function next()
     {
         return next($this->_items);
     }
 
 
+    #[\ReturnTypeWillChange]
     public function key()
     {
         return key($this->_items);
     }
 
 
+    #[\ReturnTypeWillChange]
     public function valid()
     {
         return current($this->_items)!==false;
     }
 
 
+    #[\ReturnTypeWillChange]
     public function rewind()
     {
         reset($this->_items);
     }
 
 
+    #[\ReturnTypeWillChange]
     public function offsetExists($offset)
     {
         return array_key_exists($offset, $this->_items);
     }
 
 
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->_items[$offset];
     }
 
 
+    #[\ReturnTypeWillChange]
     public function offsetSet($offset, $value)
     {
         if ($offset === null) {
@@ -129,6 +137,7 @@ class NameTree implements ArrayAccess, Countable, Iterator
     }
 
 
+    #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
         unset($this->_items[$offset]);
@@ -140,6 +149,7 @@ class NameTree implements ArrayAccess, Countable, Iterator
         $this->_items = array();
     }
 
+    #[\ReturnTypeWillChange]
     public function count()
     {
         return count($this->_items);
