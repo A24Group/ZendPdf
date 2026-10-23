@@ -221,10 +221,7 @@ class Type0 extends AbstractFont
      */
     public function encodeString($string, $charEncoding)
     {
-        // drawText() passes the caller's encoding straight through and it
-        // may be null (PdfDocGen defaults it to null). PHP deprecates null
-        // for a string parameter; '' is what null was already coerced to.
-        return iconv($charEncoding ?? '', 'UTF-16BE', $string);
+        return iconv((string) $charEncoding, 'UTF-16BE', $string);
     }
 
     /**

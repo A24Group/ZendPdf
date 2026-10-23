@@ -366,10 +366,7 @@ class Symbol extends AbstractStandard
          * and the $charEncoding parameter, will go away soon...
          */
         if ($charEncoding != 'UTF-16BE') {
-            // drawText() passes the caller's encoding straight through and it
-            // may be null (PdfDocGen defaults it to null). PHP deprecates null
-            // for a string parameter; '' is what null was already coerced to.
-            $string = iconv($charEncoding ?? '', 'UTF-16BE', $string);
+            $string = iconv((string) $charEncoding, 'UTF-16BE', $string);
         }
         /**
          * @todo Properly handle characters encoded as surrogate pairs.

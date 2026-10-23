@@ -219,17 +219,11 @@ class Extracted extends AbstractFont
     public function encodeString($string, $charEncoding)
     {
         if ($this->_encoding == 'Identity-H') {
-            // drawText() passes the caller's encoding straight through and it
-            // may be null (PdfDocGen defaults it to null). PHP deprecates null
-            // for a string parameter; '' is what null was already coerced to.
-            return iconv($charEncoding ?? '', 'UTF-16BE', $string);
+            return iconv((string) $charEncoding, 'UTF-16BE', $string);
         }
 
         if ($this->_encoding == 'WinAnsiEncoding') {
-            // drawText() passes the caller's encoding straight through and it
-            // may be null (PdfDocGen defaults it to null). PHP deprecates null
-            // for a string parameter; '' is what null was already coerced to.
-            return iconv($charEncoding ?? '', 'CP1252//IGNORE', $string);
+            return iconv((string) $charEncoding, 'CP1252//IGNORE', $string);
         }
 
         throw new Exception\CorruptedPdfException(self::ENCODING_NOT_SUPPORTED);
