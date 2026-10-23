@@ -45,6 +45,13 @@ class StructureParser
      */
     private $_pdfVersion;
 
+    /**
+     * Cross-reference table entries removed while parsing free entries
+     *
+     * @var array
+     */
+    private $_refTable = array();
+
 
     /**
      * Get length of source PDF

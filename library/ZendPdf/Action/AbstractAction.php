@@ -270,6 +270,7 @@ abstract class AbstractAction extends Pdf\InternalStructure\NavigationTarget imp
      *
      * @return \ZendPdf\Action\AbstractAction
      */
+    #[\ReturnTypeWillChange]
     public function current()
     {
         return current($this->next);
@@ -280,6 +281,7 @@ abstract class AbstractAction extends Pdf\InternalStructure\NavigationTarget imp
      *
      * @return integer
      */
+    #[\ReturnTypeWillChange]
     public function key()
     {
         return key($this->next);
@@ -288,6 +290,7 @@ abstract class AbstractAction extends Pdf\InternalStructure\NavigationTarget imp
     /**
      * Go to next child
      */
+    #[\ReturnTypeWillChange]
     public function next()
     {
         return next($this->next);
@@ -296,6 +299,7 @@ abstract class AbstractAction extends Pdf\InternalStructure\NavigationTarget imp
     /**
      * Rewind children
      */
+    #[\ReturnTypeWillChange]
     public function rewind()
     {
         return reset($this->next);
@@ -306,6 +310,7 @@ abstract class AbstractAction extends Pdf\InternalStructure\NavigationTarget imp
      *
      * @return boolean
      */
+    #[\ReturnTypeWillChange]
     public function valid()
     {
         return current($this->next) !== false;
@@ -316,6 +321,7 @@ abstract class AbstractAction extends Pdf\InternalStructure\NavigationTarget imp
      *
      * @return \ZendPdf\Action\AbstractAction|null
      */
+    #[\ReturnTypeWillChange]
     public function getChildren()
     {
         return current($this->next);
@@ -326,6 +332,7 @@ abstract class AbstractAction extends Pdf\InternalStructure\NavigationTarget imp
      *
      * @return bool  whether container has any pages
      */
+    #[\ReturnTypeWillChange]
     public function hasChildren()
     {
         return count($this->next) > 0;
@@ -341,6 +348,7 @@ abstract class AbstractAction extends Pdf\InternalStructure\NavigationTarget imp
      *
      * @return int
      */
+    #[\ReturnTypeWillChange]
     public function count()
     {
         return count($this->childOutlines);
