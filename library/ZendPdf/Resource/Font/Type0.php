@@ -221,7 +221,7 @@ class Type0 extends AbstractFont
      */
     public function encodeString($string, $charEncoding)
     {
-        return iconv($charEncoding, 'UTF-16BE', $string);
+        return iconv((string) $charEncoding, 'UTF-16BE', $string);
     }
 
     /**

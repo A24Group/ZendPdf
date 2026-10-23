@@ -287,6 +287,7 @@ abstract class AbstractOutline implements
      *
      * @return \ZendPdf\Outline\AbstractOutline
      */
+    #[\ReturnTypeWillChange]
     public function current()
     {
         return current($this->childOutlines);
@@ -297,6 +298,7 @@ abstract class AbstractOutline implements
      *
      * @return integer
      */
+    #[\ReturnTypeWillChange]
     public function key()
     {
         return key($this->childOutlines);
@@ -305,6 +307,7 @@ abstract class AbstractOutline implements
     /**
      * Go to next child
      */
+    #[\ReturnTypeWillChange]
     public function next()
     {
         return next($this->childOutlines);
@@ -313,6 +316,7 @@ abstract class AbstractOutline implements
     /**
      * Rewind children
      */
+    #[\ReturnTypeWillChange]
     public function rewind()
     {
         return reset($this->childOutlines);
@@ -323,6 +327,7 @@ abstract class AbstractOutline implements
      *
      * @return boolean
      */
+    #[\ReturnTypeWillChange]
     public function valid()
     {
         return current($this->childOutlines) !== false;
@@ -333,6 +338,7 @@ abstract class AbstractOutline implements
      *
      * @return \ZendPdf\Outline\AbstractOutline|null
      */
+    #[\ReturnTypeWillChange]
     public function getChildren()
     {
         return current($this->childOutlines);
@@ -343,6 +349,7 @@ abstract class AbstractOutline implements
      *
      * @return bool  whether container has any pages
      */
+    #[\ReturnTypeWillChange]
     public function hasChildren()
     {
         return count($this->childOutlines) > 0;
@@ -358,6 +365,7 @@ abstract class AbstractOutline implements
      *
      * @return int
      */
+    #[\ReturnTypeWillChange]
     public function count()
     {
         return count($this->childOutlines);

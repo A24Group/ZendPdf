@@ -64,6 +64,15 @@ abstract class AbstractFont extends Resource\AbstractResource
     protected $_isMonospace = false;
 
     /**
+     * Misspelling of $_isMonospace that the concrete font classes have always
+     * written to. Declared so it is not a dynamic property, which PHP deprecates.
+     * Nothing reads it: isMonospace() reads $_isMonospace above, so merging the
+     * two would change which fonts report as monospaced.
+     * @var boolean
+     */
+    protected $_isMonospaced = false;
+
+    /**
      * The position below the text baseline of the underline (in glyph units).
      * @var integer
      */

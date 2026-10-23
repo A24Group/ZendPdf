@@ -392,7 +392,7 @@ class ZapfDingbats extends AbstractStandard
          * and the $charEncoding parameter, will go away soon...
          */
         if ($charEncoding != 'UTF-16BE') {
-            $string = iconv($charEncoding, 'UTF-16BE', $string);
+            $string = iconv((string) $charEncoding, 'UTF-16BE', $string);
         }
         /**
          * @todo Properly handle characters encoded as surrogate pairs.
