@@ -56,7 +56,7 @@ class StringObject extends AbstractTypeObject
      * @param \ZendPdf\ObjectFactory $factory
      * @return string
      */
-    public function toString(Pdf\ObjectFactory $factory = null)
+    public function toString(?Pdf\ObjectFactory $factory = null)
     {
         return '(' . self::escape((string)$this->value) . ')';
     }

@@ -125,7 +125,7 @@ class IndirectObjectReference extends AbstractTypeObject
      * @param \ZendPdf\ObjectFactory $factory
      * @return string
      */
-    public function toString(Pdf\ObjectFactory $factory = null)
+    public function toString(?Pdf\ObjectFactory $factory = null)
     {
         if ($factory === null) {
             $shift = 0;

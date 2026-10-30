@@ -70,15 +70,15 @@ abstract class AbstractAction extends Pdf\InternalStructure\NavigationTarget imp
         if ($dictionary->Next !== null) {
             if ($dictionary->Next instanceof InternalType\DictionaryObject) {
                 // Check if dictionary object is not already processed
-                if (!$processedActions->contains($dictionary->Next)) {
-                    $processedActions->attach($dictionary->Next);
+                if (!$processedActions->offsetExists($dictionary->Next)) {
+                    $processedActions->offsetSet($dictionary->Next);
                     $this->next[] = self::load($dictionary->Next, $processedActions);
                 }
             } elseif ($dictionary->Next instanceof InternalType\ArrayObject) {
                 foreach ($dictionary->Next->items as $chainedActionDictionary) {
                     // Check if dictionary object is not already processed
-                    if (!$processedActions->contains($chainedActionDictionary)) {
-                        $processedActions->attach($chainedActionDictionary);
+                    if (!$processedActions->offsetExists($chainedActionDictionary)) {
+                        $processedActions->offsetSet($chainedActionDictionary);
                         $this->next[] = self::load($chainedActionDictionary, $processedActions);
                     }
                 }
@@ -99,7 +99,7 @@ abstract class AbstractAction extends Pdf\InternalStructure\NavigationTarget imp
      * @return \ZendPdf\Action\AbstractAction
      * @throws \ZendPdf\Exception\ExceptionInterface
      */
-    public static function load(InternalType\AbstractTypeObject $dictionary, \SplObjectStorage $processedActions = null)
+    public static function load(InternalType\AbstractTypeObject $dictionary, ?\SplObjectStorage $processedActions = null)
     {
         if ($processedActions === null) {
             $processedActions = new \SplObjectStorage();
@@ -198,15 +198,15 @@ abstract class AbstractAction extends Pdf\InternalStructure\NavigationTarget imp
      *                                            (used to prevent infinity loop caused by cyclic references)
      * @return \ZendPdf\InternalType\IndirectObject|\ZendPdf\InternalType\IndirectObjectReference
      */
-    public function dumpAction(ObjectFactory $factory, \SplObjectStorage $processedActions = null)
+    public function dumpAction(ObjectFactory $factory, ?\SplObjectStorage $processedActions = null)
     {
         if ($processedActions === null) {
             $processedActions = new \SplObjectStorage();
         }
-        if ($processedActions->contains($this)) {
+        if ($processedActions->offsetExists($this)) {
             throw new Exception\CorruptedPdfException('Action chain cyclyc reference is detected.');
         }
-        $processedActions->attach($this);
+        $processedActions->offsetSet($this);
 
         $childListUpdated = false;
         if (count($this->_originalNextList) != count($this->next)) {

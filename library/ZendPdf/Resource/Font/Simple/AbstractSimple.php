@@ -250,7 +250,10 @@ abstract class AbstractSimple extends FontResource\AbstractFont
             return $string; // returning here b/c AIX doesnt know what CP1252 is
         }
 
-        return iconv((string) $charEncoding, 'CP1252//IGNORE', $string);
+        // Callers may pass null for "use the current locale". PHP deprecates null
+        // for a string parameter, so pass the empty string, which iconv() has
+        // always treated identically to the null that used to be coerced here.
+        return iconv($charEncoding ?? '', 'CP1252//IGNORE', $string);
     }
 
     /**
